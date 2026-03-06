@@ -223,19 +223,29 @@ Este comportamiento es esperable en datasets pequeños y puede mitigarse mediant
 12.	Resultados de Inferencia en imágenes nuevas
 El siguiente análisis presenta una revisión cualitativa de los resultados obtenidos al ejecutar el modelo de detección de cascos de seguridad sobre un conjunto de imágenes de prueba. El objetivo de esta evaluación es observar el comportamiento del modelo en diferentes escenarios y analizar tanto los aciertos como las posibles limitaciones del sistema de detección.
 12.1 Imagen 1
+![Inferencia ejemplo 1](results/inference/img_01.jpg)
+    
 En esta imagen se observa a una persona trabajando en el motor de un camión dentro de un taller mecánico. No se aprecia el uso de casco de seguridad. El modelo no detectó ninguna persona en la escena. Una posible explicación es que el trabajador se encuentra parcialmente oculto y de espaldas a la cámara. Además, el modelo probablemente fue entrenado principalmente con imágenes de obras de construcción, por lo que su capacidad de detección puede disminuir en contextos diferentes como talleres mecánicos.
 12.2 Imagen 2
+![Inferencia ejemplo 2](results/inference/img_02.jpg)
+
 En esta escena aparece un trabajador caminando dentro de una estructura de andamios. El modelo detectó dos instancias clasificadas como 'persona_con_casco'. Una de las detecciones presenta una confianza alta (0.93) y corresponde correctamente al trabajador visible en la imagen. La segunda detección muestra una confianza menor (0.35) y posiblemente corresponde a un falso positivo generado por la complejidad de las estructuras metálicas del fondo. Este resultado sugiere que el modelo puede confundirse con patrones estructurales presentes en el entorno.
 12.3 Imagen 3
+![Inferencia ejemplo 3](results/inference/img_03.jpg)
+
 El modelo identificó una instancia clasificada como 'persona_sin_casco' con una confianza de 0.52. En la imagen se observa un trabajador que lleva un pañuelo en la cabeza y gafas de protección, pero no utiliza casco de seguridad. La predicción puede considerarse correcta, aunque el nivel de confianza moderado indica que el modelo presenta cierta incertidumbre cuando la cabeza está cubierta por elementos distintos al casco.
 12.4 Imagen 4
+![Inferencia ejemplo 4](results/inference/img_04.jpg)
+
 Esta imagen presenta una escena conceptual en la que una persona interactúa con un holograma digital. El modelo no generó ninguna detección. Este resultado es adecuado, ya que la escena no corresponde a un entorno de construcción ni contiene trabajadores con cascos de seguridad.
 12.5 Imagen 5
+![Inferencia ejemplo 5](results/inference/img_05.jpg)
+
 El modelo detectó una instancia clasificada como 'persona_sin_casco' con una confianza de 0.91. Sin embargo, el trabajador en la imagen sí lleva un casco de seguridad amarillo. Este caso representa un error de clasificación. Una posible causa es que el trabajador se encuentra inclinado hacia adelante, lo que provoca que el casco sea parcialmente ocultado y dificulte su reconocimiento por parte del modelo.
 12.6 Conclusiones de inferencia.
 En términos generales, el modelo demuestra capacidad para identificar trabajadores con y sin casco en diferentes escenas relacionadas con actividades de construcción. No obstante, el análisis también revela algunas limitaciones. La precisión del modelo disminuye cuando las personas aparecen parcialmente ocultas, cuando el casco se observa desde ángulos poco comunes o cuando existen estructuras complejas en el fondo que pueden generar falsas detecciones. Para mejorar el desempeño del modelo sería recomendable ampliar el conjunto de datos de entrenamiento, incorporar más ejemplos de cascos desde diferentes perspectivas y aumentar la diversidad de contextos laborales representados en el dataset.
 
-13.	Reproducibilidad
+14.	Reproducibilidad
 13.1 Cómo ejecutar el proyecto
 Para reproducir el entrenamiento y evaluación:
 1) Abrir los notebooks dentro de la carpeta /notebooks en GitHub.
