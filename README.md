@@ -11,9 +11,9 @@ Resultados principales del entrenamiento:
 - **mAP@0.5:** 0.582
 - **F1 máximo:** ~0.59
 Conclusiones principales:
-1. El modelo es capaz de detectar correctamente la mayoría de los casos evidentes de uso y no uso de casco en escenarios de obra.
-2. Los errores más frecuentes se producen cuando aparecen **gorras, sombreros o cascos parcialmente ocultos**, lo que introduce ambigüedad visual.
-3. El incremento del dataset introdujo mayor variabilidad y casos límite, lo que redujo ligeramente el mAP pero generó una evaluación más exigente y realista del modelo.
+a. El modelo es capaz de detectar correctamente la mayoría de los casos evidentes de uso y no uso de casco en escenarios de obra.
+b. Los errores más frecuentes se producen cuando aparecen **gorras, sombreros o cascos parcialmente ocultos**, lo que introduce ambigüedad visual.
+c. El incremento del dataset introdujo mayor variabilidad y casos límite, lo que redujo ligeramente el mAP pero generó una evaluación más exigente y realista del modelo.
 
 3.	Descripción del problema
 En entornos de construcción e infraestructura (sector AECO: Architecture, Engineering, Construction & Operations), el uso de Equipo de Protección Personal (EPP) es un requisito esencial para reducir la probabilidad y severidad de accidentes. Aun cuando existen procedimientos y supervisión, el control visual manual puede ser inconsistente, costoso y difícil de escalar. Un sistema automatizado de detección de casco puede apoyar en: monitoreo preventivo, auditorías de seguridad, generación de evidencia y alertas tempranas. En esta tarea, se modela el problema como detección/clasificación de objetos, donde el objeto base es la persona y la etiqueta describe si porta casco.
