@@ -115,28 +115,32 @@ RESULTADOS DETALLADOS – TRAIN 2 (136 IMÁGENES)
 En esta sección se presentan las gráficas correspondientes al segundo entrenamiento (Train 2), realizado con un dataset ampliado a 136 imágenes. Se incluyen curvas de F1, Precision, Recall, Precision-Recall y matrices de confusión, así como ejemplos visuales del conjunto de validación.
 Curvas por Umbral de Confianza (Train 2)
  
-Figura: F1 vs Confidence (Train 2).
- 
-Figura: Precision vs Confidence (Train 2).
- 
-Figura: Recall vs Confidence (Train 2).
+![F1 vs umbral de confianza (Train 2)](results/E50_train2/BoxF1_curve.png)
+
+![Precision vs umbral de confianza (Train 2)](results/E50_train2/BoxP_curve.png)
+
+![Recall vs umbral de confianza (Train 2)](results/E50_train2/BoxR_curve.png)
+
+
 Curva Precision–Recall (Train 2)
- 
-Figura: Precision–Recall con mAP@0.5 (Train 2).
+
+![Precision-Recall curve (Train 2)](results/E50_train2/BoxPR_curve.png) 
+
 Matriz de Confusión (Train 2)
  
-Figura: Matriz de confusión (valores absolutos, Train 2).
- 
-Figura: Matriz de confusión normalizada (Train 2).
+![Matriz de confusión (Train 2)](results/E50_train2/confusion_matrix.png)
+
+![Matriz de confusión normalizada (Train 2)](results/E50_train2/confusion_matrix_normalized.png)
+
 Ejemplos Visuales – Validación (Train 2)
  
-Figura: Etiquetas reales (batch 0, Train 2).
- 
-Figura: Predicciones del modelo (batch 0, Train 2).
- 
-Figura: Etiquetas reales (batch 1, Train 2).
- 
-Figura: Predicciones del modelo (batch 1, Train 2).
+![Etiquetas reales batch 0 (Train 2)](results/E50_train2/val_batch0_labels.jpg)
+
+![Predicciones del modelo batch 0 (Train 2)](results/E50_train2/val_batch0_pred.jpg)
+
+![Etiquetas reales batch 1 (Train 2)](results/E50_train2/val_batch1_labels.jpg)
+
+![Predicciones del modelo batch 1 (Train 2)](results/E50_train2/val_batch1_pred.jpg)
 
 10.	Análisis técnico de desempeño
 10.1 Comparación estructurada entre Train 1 y Train 2
