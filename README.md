@@ -47,15 +47,15 @@ URL del dataset (Roboflow, versión pública): https://app.roboflow.com/lisardos
 6.4 Ejemplos de anotación del dataset (Roboflow)
 Las siguientes imágenes muestran ejemplos reales del proceso de anotación realizado en Roboflow. En cada caso se dibuja una caja delimitadora (bounding box) alrededor de la persona visible en la escena y se asigna la etiqueta correspondiente: persona_con_casco o persona_sin_casco. Estas anotaciones constituyen la base del dataset utilizado para el entrenamiento del modelo YOLOv8.
 
- ![Anotación RF 01](results/Anotaciones RB/Anotación RF 01.png)
+![Anotación RF 01](results/Anotaciones%20RB/Anotación%20RF%2001.png)
 
-![Anotación RF 02](results/Anotaciones RB/Anotación RF 02.png)
+![Anotación RF 02](results/Anotaciones%20RB/Anotación%20RF%2002.png)
 
-![Anotación RF 03](results/Anotaciones RB/Anotación RF 03.png)
+![Anotación RF 03](results/Anotaciones%20RB/Anotación%20RF%2003.png)
 
-![Anotación RF 04](results/Anotaciones RB/Anotación RF 04.png)
+![Anotación RF 04](results/Anotaciones%20RB/Anotación%20RF%2004.png)
 
-![Anotación RF 05](results/Anotaciones RB/Anotación RF 05.png)
+![Anotación RF 05](results/Anotaciones%20RB/Anotación%20RF%2005.png)
     
 
 7.	Modelo y entorno de entrenamiento
