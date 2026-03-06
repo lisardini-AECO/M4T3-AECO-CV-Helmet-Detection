@@ -82,32 +82,35 @@ Resumen numérico:
 Curvas por umbral de confianza (Train 1)
 Las curvas por confianza muestran cómo cambian las métricas cuando se ajusta el umbral mínimo de confianza para aceptar una detección. Un umbral más bajo tiende a aumentar el recall (se aceptan más detecciones), pero puede bajar precision (más falsos positivos). Un umbral más alto tiende a aumentar precision, pero baja recall (se pierden objetos verdaderos). Elegir el umbral es una decisión de operación: por ejemplo, en seguridad puede preferirse mayor recall (detectar más casos sin casco) a costa de más alertas falsas, dependiendo del costo del error.
  
-Figura: F1 vs umbral de confianza (Train 1).
- 
-Figura: Precision vs umbral de confianza (Train 1).
- 
-Figura: Recall vs umbral de confianza (Train 1).
+![F1 vs umbral de confianza](results/E50_train1/BoxF1_curve.png)
+
+![Precision vs umbral de confianza](results/E50_train1/BoxP_curve.png)
+
+![Recall vs umbral de confianza](results/E50_train1/BoxR_curve.png)
+
 
 Curva Precision–Recall y mAP (Train 1)
 La curva Precision–Recall resume el intercambio entre precisión y sensibilidad para diferentes umbrales. El área bajo esta curva (AP) por clase y su promedio (mAP) reflejan el desempeño global. Una curva más cercana a la esquina superior derecha indica mejor desempeño (alta precisión y alto recall).
  
-Figura: Curva Precision–Recall con mAP@0.5 (Train 1).
+![Precision-Recall curve](results/E50_train1/BoxPR_curve.png)
 Matriz de confusión (Train 1)
 La matriz de confusión permite observar patrones de error: confundir persona_con_casco con persona_sin_casco (o viceversa), detecciones perdidas (predichas como background) y falsos positivos (predicciones que no corresponden a ningún objeto real). La versión normalizada facilita comparar proporciones.
  
-Figura: Matriz de confusión (conteos absolutos, Train 1).
- 
-Figura: Matriz de confusión normalizada (Train 1).
+![Matriz de confusión](results/E50_train1/confusion_matrix.png)
+
+![Matriz de confusión normalizada](results/E50_train1/confusion_matrix_normalized.png)
+
 Ejemplos cualitativos (validación)
 Además de métricas, es importante revisar ejemplos visuales: etiquetas reales vs predicciones del modelo. Esto ayuda a identificar: oclusiones, cajas mal ajustadas, confusiones por accesorios, personas pequeñas en la imagen, y escenas con iluminación extrema. A continuación se incluyen ejemplos de batch de validación (si están disponibles).
  
-Figura: Etiquetas reales (batch 0, validación).
- 
-Figura: Predicciones del modelo (batch 0, validación).
- 
-Figura: Etiquetas reales (batch 1, validación).
- 
-Figura: Predicciones del modelo (batch 1, validación).
+![Etiquetas reales batch 0](results/E50_train1/val_batch0_labels.jpg)
+
+![Predicciones del modelo batch 0](results/E50_train1/val_batch0_pred.jpg)
+
+![Etiquetas reales batch 1](results/E50_train1/val_batch1_labels.jpg)
+
+![Predicciones del modelo batch 1](results/E50_train1/val_batch1_pred.jpg)
+
 RESULTADOS DETALLADOS – TRAIN 2 (136 IMÁGENES)
 En esta sección se presentan las gráficas correspondientes al segundo entrenamiento (Train 2), realizado con un dataset ampliado a 136 imágenes. Se incluyen curvas de F1, Precision, Recall, Precision-Recall y matrices de confusión, así como ejemplos visuales del conjunto de validación.
 Curvas por Umbral de Confianza (Train 2)
