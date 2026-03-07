@@ -348,6 +348,14 @@ La ejecución end-to-end incluye:
 5.	Exportación de pesos entrenados.
 Esto permite que cualquier tercero pueda reproducir los resultados utilizando únicamente el repositorio y Google Colab, sin instalaciones locales.
 
+Pesos del modelo entrenado
+
+Los pesos del mejor modelo entrenado se encuentran en el repositorio:
+
+results/best_v3.pt
+
+Este archivo corresponde al mejor checkpoint generado durante el entrenamiento E50 y puede utilizarse directamente para realizar inferencia sin necesidad de reentrenar el modelo.
+
 **14.	Limitaciones del dataset y del modelo**
 
 Limitaciones actuales (importantes para interpretar resultados):
