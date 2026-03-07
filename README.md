@@ -11,6 +11,8 @@ Documentación del proyecto
 **Instrucciones para ejecutar el proyecto en Google Colab:**  
 [Ver instrucciones](docs/M4T3_Instrucciones_Ejecucion_Colab.pdf)
 
+**Gobernanza y licencia del modelo**  
+[Ver documento](docs/M4T3_Gobernanza_Licencia_Modelo_Casco.pdf)
 
 **1.	Introducción y contexto**
 
