@@ -25,6 +25,17 @@ Entrenamiento extendido utilizando el dataset final.
 [Ver notebook](notebooks/02_Training_YOLOv8_Helmet_E50.ipynb)
 
 
+**Nota sobre reproducibilidad del experimento**
+
+Para permitir la ejecución completa de los notebooks mediante **Run all** en Google Colab, la API Key de Roboflow se incluye temporalmente dentro del código. Esto permite descargar automáticamente el dataset y reproducir el flujo completo del experimento sin pasos adicionales de configuración. La API Key se utiliza únicamente con fines académicos y será regenerada posteriormente.
+
+Durante las primeras pruebas del proyecto se utilizó un **dataset inicial de 89 imágenes** para realizar un entrenamiento preliminar del modelo. Sin embargo, esa versión del dataset **no fue guardada como una versión independiente en Roboflow**.
+
+Posteriormente el dataset fue ampliado hasta **136 imágenes**, que corresponde al dataset final utilizado en los notebooks incluidos en este repositorio.
+
+Aunque el dataset inicial ya no está disponible para su reproducción directa, **los resultados obtenidos durante ese primer entrenamiento se documentan en este README**, con el objetivo de mostrar la evolución del experimento y la mejora del dataset.
+
+
 **1.	Introducción y contexto**
 
 Este repositorio documenta el desarrollo de un modelo de Visión por Computadora (Computer Vision) para detectar el uso de casco de seguridad en personas, como parte de la tarea M4T3 del Máster en Inteligencia Artificial para Arquitectura y Construcción (MAIC) de Zigurat Global Institute of Technology. El objetivo práctico es entrenar y evaluar un detector de objetos basado en YOLOv8 para clasificar personas en dos categorías: con casco y sin casco, y analizar el desempeño del modelo para identificar limitaciones, sesgos y oportunidades de mejora.
