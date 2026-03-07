@@ -14,6 +14,17 @@ Documentación del proyecto
 **Gobernanza y licencia del modelo**  
 [Ver documento](docs/M4T3_Gobernanza_Licencia_Modelo_Casco.pdf)
 
+**Notebooks**
+
+**Entrenamiento rápido (E1)**
+Prueba del pipeline completo con un entrenamiento corto.
+[Ver notebook](notebooks/01_Training_YOLOv8_Helmet_E1.ipynb)
+
+**Entrenamiento completo (E50)**
+Entrenamiento extendido utilizando el dataset final.
+[Ver notebook](notebooks/02_Training_YOLOv8_Helmet_E50.ipynb)
+
+
 **1.	Introducción y contexto**
 
 Este repositorio documenta el desarrollo de un modelo de Visión por Computadora (Computer Vision) para detectar el uso de casco de seguridad en personas, como parte de la tarea M4T3 del Máster en Inteligencia Artificial para Arquitectura y Construcción (MAIC) de Zigurat Global Institute of Technology. El objetivo práctico es entrenar y evaluar un detector de objetos basado en YOLOv8 para clasificar personas en dos categorías: con casco y sin casco, y analizar el desempeño del modelo para identificar limitaciones, sesgos y oportunidades de mejora.
