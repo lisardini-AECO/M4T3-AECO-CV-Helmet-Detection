@@ -1,5 +1,14 @@
 **Detección de cascos de seguridad en entornos de construcción mediante YOLOV8: Prototipo de visión por computadora para seguridad en el sector AECO**
 
+Documentación del proyecto
+
+**Informe del proyecto**  
+[Ver informe completo](docs/M4T3_Deteccion_Casco_Informe.pdf)
+
+**Presentación del proyecto**  
+[Ver presentación](docs/M4T3_Deteccion_Casco_Seguridad_YOLOv8_Presentacion.pdf)
+
+
 **1.	Introducción y contexto**
 
 Este repositorio documenta el desarrollo de un modelo de Visión por Computadora (Computer Vision) para detectar el uso de casco de seguridad en personas, como parte de la tarea M4T3 del Máster en Inteligencia Artificial para Arquitectura y Construcción (MAIC) de Zigurat Global Institute of Technology. El objetivo práctico es entrenar y evaluar un detector de objetos basado en YOLOv8 para clasificar personas en dos categorías: con casco y sin casco, y analizar el desempeño del modelo para identificar limitaciones, sesgos y oportunidades de mejora.
@@ -301,11 +310,13 @@ En términos generales, el modelo demuestra capacidad para identificar trabajado
 13.1 Cómo ejecutar el proyecto
 
 Para reproducir el entrenamiento y evaluación:
+
 1) Abrir los notebooks dentro de la carpeta /notebooks en GitHub.
 2) Abrir cada notebook en Google Colab (opción ‘Open in Colab’ o cargándolo manualmente).
 3) En Colab: Runtime → Change runtime type → seleccionar GPU.
-4) Ejecutar celdas en orden (de arriba a abajo), verificando que el enlace con Roboflow y la ruta al data.yaml sean correctas.
-5) Al finalizar, revisar las carpetas de resultados generadas (curvas, matriz de confusión, ejemplos de validación).
+4) Verificar que el secret ROBOFLOW_API_KEY esté habilitado en la sección Secrets de Google Colab. Este secret permite que el notebook descargue automáticamente el dataset desde Roboflow.
+5) Ejecutar celdas en orden (de arriba a abajo), verificando que el enlace con Roboflow y la ruta al `data.yaml` sean correctas.
+6) Al finalizar, revisar las carpetas de resultados generadas (curvas, matriz de confusión, ejemplos de validación).
 
 13.2 Checklist de Reproducibilidad Técnica
 
