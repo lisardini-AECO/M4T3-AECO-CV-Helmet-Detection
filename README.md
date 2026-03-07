@@ -1,9 +1,11 @@
-Detección de cascos de seguridad en entornos de construcción mediante YOLOV8: Prototipo de visión por computadora para seguridad en el sector AECO
+**Detección de cascos de seguridad en entornos de construcción mediante YOLOV8: Prototipo de visión por computadora para seguridad en el sector AECO**
 
-1.	Introducción y contexto
+**1.	Introducción y contexto**
+
 Este repositorio documenta el desarrollo de un modelo de Visión por Computadora (Computer Vision) para detectar el uso de casco de seguridad en personas, como parte de la tarea M4T3 del Máster en Inteligencia Artificial para Arquitectura y Construcción (MAIC) de Zigurat Global Institute of Technology. El objetivo práctico es entrenar y evaluar un detector de objetos basado en YOLOv8 para clasificar personas en dos categorías: con casco y sin casco, y analizar el desempeño del modelo para identificar limitaciones, sesgos y oportunidades de mejora.
 
-2.	Resumen de resultados
+**2.	Resumen de resultados**
+
 Se desarrolló un prototipo de detección automática del uso de casco de seguridad en trabajadores utilizando un modelo de visión por computadora basado en YOLOv8n. El modelo fue entrenado con un dataset construido en Roboflow a partir de imágenes públicas de Pexels.
 Resultados principales del entrenamiento:
 - **Dataset final:** 136 imágenes anotadas.
@@ -15,19 +17,25 @@ a. El modelo es capaz de detectar correctamente la mayoría de los casos evident
 b. Los errores más frecuentes se producen cuando aparecen **gorras, sombreros o cascos parcialmente ocultos**, lo que introduce ambigüedad visual.
 c. El incremento del dataset introdujo mayor variabilidad y casos límite, lo que redujo ligeramente el mAP pero generó una evaluación más exigente y realista del modelo.
 
-3.	Descripción del problema
+**3.	Descripción del problema**
+
 En entornos de construcción e infraestructura (sector AECO: Architecture, Engineering, Construction & Operations), el uso de Equipo de Protección Personal (EPP) es un requisito esencial para reducir la probabilidad y severidad de accidentes. Aun cuando existen procedimientos y supervisión, el control visual manual puede ser inconsistente, costoso y difícil de escalar. Un sistema automatizado de detección de casco puede apoyar en: monitoreo preventivo, auditorías de seguridad, generación de evidencia y alertas tempranas. En esta tarea, se modela el problema como detección/clasificación de objetos, donde el objeto base es la persona y la etiqueta describe si porta casco.
 El reto principal no es únicamente detectar una persona, sino discriminar correctamente escenarios ambiguos: cascos parcialmente visibles, ángulos laterales, oclusiones, distancia a cámara, variaciones de iluminación, y elementos visualmente similares al casco (gorras, sombreros, bandanas, capuchas, etc.).
 
-4.	Criterio de éxito del prototipo
+**4.	Criterio de éxito del prototipo**
+
 Dado que este proyecto utiliza un dataset pequeño y se desarrolla con fines académicos, el objetivo no es alcanzar desempeño industrial sino demostrar la viabilidad del enfoque de visión por computadora para el problema planteado. En este contexto, se considera exitoso un modelo capaz de detectar correctamente la mayoría de los casos evidentes de uso y no uso de casco, alcanzando métricas razonables de precisión y recall y permitiendo identificar claramente las limitaciones del dataset y del modelo.
 
-5.	Definición de clases del dataset
+**5.	Definición de clases del dataset**
+
 5.1 Clases utilizadas
+
 El dataset incluye dos clases para detección:
 • persona_con_casco: Persona portando casco de seguridad (hard hat / safety helmet).
 • persona_sin_casco: Persona sin casco. En esta clase pueden aparecer personas con gorra, sombrero, bandana o mascarilla, según la selección de imágenes realizada para aumentar la dificultad y evitar confusiones.
+
 5.2 Reglas de etiquetado
+
 Para mantener consistencia en las anotaciones, se siguieron los siguientes criterios de etiquetado:
 • Las cajas delimitadoras (bounding boxes) se dibujan alrededor de la persona visible en la imagen.
 • Se clasifica como persona_con_casco únicamente cuando el casco de seguridad es claramente visible.
@@ -35,16 +43,24 @@ Para mantener consistencia en las anotaciones, se siguieron los siguientes crite
 • En casos donde el casco aparece parcialmente visible pero identificable, se mantiene la etiqueta persona_con_casco.
 Nota: En YOLO, además de las clases anotadas, existe la categoría implícita de fondo (background) que representa todo lo que no es un objeto anotado. En métricas como la matriz de confusión, suele aparecer como una fila/columna adicional para contabilizar detecciones perdidas o predicciones sin correspondencia.
 
-6.	Dataset
+**6.	Dataset**
+
 6.1 Origen de las imágenes
+
 Las imágenes fueron obtenidas de Pexels (material libre), y el dataset fue construido y gestionado con Roboflow para anotación, versionado y exportación al formato YOLO. Se trabajó con dos iteraciones del dataset con el fin de comparar desempeño al incrementar el número de ejemplos y aumentar la variabilidad de escenas.
+
 6.2 Versiones del dataset
+
 • Entrenamiento 1 (Train 1): 89 imágenes anotadas (dataset inicial).
 • Entrenamiento 2 (Train 2): 136 imágenes anotadas (dataset ampliado).
+
 6.3 División del Dataset
+
 Partición (split) del dataset: 70% entrenamiento / 20% validación / 10% prueba. Esta división se mantuvo para facilitar la comparación entre versiones.
 URL del dataset (Roboflow, versión pública): https://app.roboflow.com/lisardos-workspace/casco_v0_test/3
+
 6.4 Ejemplos de anotación del dataset (Roboflow)
+
 Las siguientes imágenes muestran ejemplos reales del proceso de anotación realizado en Roboflow. En cada caso se dibuja una caja delimitadora (bounding box) alrededor de la persona visible en la escena y se asigna la etiqueta correspondiente: persona_con_casco o persona_sin_casco. Estas anotaciones constituyen la base del dataset utilizado para el entrenamiento del modelo YOLOv8.
 
 ![Anotación RF 01](results/Anotaciones%20RB/Anotación%20RF%2001.png)
@@ -58,27 +74,38 @@ Las siguientes imágenes muestran ejemplos reales del proceso de anotación real
 ![Anotación RF 05](results/Anotaciones%20RB/Anotación%20RF%2005.png)
     
 
-7.	Modelo y entorno de entrenamiento
+**7.	Modelo y entorno de entrenamiento**
+
 7.1 Arquitectura del modelo (YOLOv8)
+
 Arquitectura: YOLOv8 (Ultralytics). YOLO (You Only Look Once) es una familia de detectores de objetos de una sola etapa que predicen cajas delimitadoras (bounding boxes) y clases de manera eficiente. YOLOv8 integra mejoras de backbone/neck/head, estrategias de entrenamiento y utilidades de evaluación respecto a versiones previas.
+
 7.2 Entorno de ejecución
+
 Entorno de ejecución: Google Colab con GPU habilitada. Framework: Ultralytics YOLOv8. El flujo general incluye: descarga/exportación del dataset desde Roboflow, definición del archivo data.yaml, entrenamiento, y posterior evaluación/visualización de métricas y ejemplos.
+
 7.3 Notebooks utilizados (E1 y E50)
+
 Sobre los notebooks E1 y E50:
 En este repositorio se usan dos notebooks para registrar corridas con distinta duración de entrenamiento. El sufijo “E1” indica una corrida rápida de 1 época (epoch) usada típicamente como verificación de pipeline (validar que el dataset se carga bien, que el entrenamiento inicia, que las rutas y clases están correctas, etc.).
 El sufijo “E50” corresponde a la corrida principal de entrenamiento con 50 épocas. Una época equivale a una pasada completa sobre el conjunto de entrenamiento (con mini-batches). Aumentar épocas puede mejorar el ajuste del modelo, pero también incrementa riesgo de sobreajuste si el dataset es pequeño o si hay ruido en anotaciones.
 
-8.	Resultados y métricas
+**8.	Resultados y métricas**
+
 8.1 Métricas utilizadas
+
 Se reportan métricas estándar de detección: Precision (precisión), Recall (sensibilidad), F1-score y mAP@0.5. En particular, mAP@0.5 (mean Average Precision con IoU=0.5) resume el desempeño de precisión/recall a diferentes umbrales, y es un indicador común para comparar detectores.
 En este proyecto se prioriza el reporte de mAP@0.5 por tratarse de un ejercicio académico con dataset reducido. No obstante, en evaluaciones más exigentes es recomendable reportar también mAP@0.5:0.95 (métrica tipo COCO), ya que esta considera múltiples umbrales de IoU y ofrece una visión más estricta del desempeño del detector.
 También se recomienda reportar mAP50–95 (mAP@0.5:0.95) como métrica más estricta; en este prototipo se prioriza mAP@0.5 por el tamaño y naturaleza del dataset, pero mAP50–95 se incorporaría en una iteración posterior para una evaluación más robusta.
+
 8.2 Resultados Train 1 y Train 2
+
 Resumen numérico:
 • Entrenamiento 1 (89 imágenes): mAP@0.5 = 0.677 ; F1 máximo ≈ 0.69.
 • Entrenamiento 2 (136 imágenes): mAP@0.5 = 0.582 ; F1 máximo ≈ 0.59.
 
-9.	Análisis visual del entrenamiento
+**9.	Análisis visual del entrenamiento**
+
 Curvas por umbral de confianza (Train 1)
 Las curvas por confianza muestran cómo cambian las métricas cuando se ajusta el umbral mínimo de confianza para aceptar una detección. Un umbral más bajo tiende a aumentar el recall (se aceptan más detecciones), pero puede bajar precision (más falsos positivos). Un umbral más alto tiende a aumentar precision, pero baja recall (se pierden objetos verdaderos). Elegir el umbral es una decisión de operación: por ejemplo, en seguridad puede preferirse mayor recall (detectar más casos sin casco) a costa de más alertas falsas, dependiendo del costo del error.
  
@@ -142,8 +169,10 @@ Ejemplos Visuales – Validación (Train 2)
 
 ![Predicciones del modelo batch 1 (Train 2)](results/E50_train2/val_batch1_pred.jpg)
 
-10.	Análisis técnico de desempeño
+**10.	Análisis técnico de desempeño**
+
 10.1 Comparación estructurada entre Train 1 y Train 2
+
 Para facilitar el análisis cuantitativo, se presenta una comparación directa entre ambas iteraciones del dataset y entrenamiento:
 Entrenamiento	Nº Imágenes	mAP@0.5	F1 Máximo	Observación General
 Train 1	89	0.677	~0.69	Dataset inicial, menor variabilidad
@@ -156,7 +185,9 @@ En particular:
 Por lo tanto, el descenso de mAP debe interpretarse como una evaluación más exigente del modelo y no como un fallo estructural del entrenamiento.
 Interpretación complementaria
 El incremento de datos no garantizó una mejora inmediata en las métricas globales. En contextos de visión por computadora con datasets pequeños, es común que la introducción de mayor variabilidad inicial reduzca temporalmente el mAP mientras el modelo comienza a enfrentarse a escenarios más complejos. Este comportamiento no necesariamente indica deterioro del modelo, sino un aumento en la exigencia del conjunto de validación.
+
 10.2 Análisis técnico de desempeño (por qué Train 2 puede bajar)
+
 Que Train 2 (136 imágenes) tenga métricas menores que Train 1 (89 imágenes) no significa necesariamente que el modelo “empeoró”; puede significar que la evaluación se volvió más exigente. Las causas más probables en este tipo de tarea son:
 a) Mayor variabilidad y casos límite: al agregar escenas con gorras/sombreros/bandanas, el modelo enfrenta confusiones más difíciles. Esto suele bajar mAP en el corto plazo, pero es deseable porque mejora la robustez a futuro.
 b) Desbalance de clases o de dificultad: aunque el conteo total aumente, puede aumentar más una clase que la otra, o aumentar imágenes “difíciles” en validación/prueba. En ese caso, la métrica baja aunque el entrenamiento sea correcto.
@@ -176,9 +207,12 @@ Implicaciones técnicas del desbalance:
 En datasets pequeños, el impacto del desbalance es más pronunciado, ya que el modelo dispone de menos ejemplos para aprender características robustas de la clase minoritaria.
 Este factor puede contribuir parcialmente a la reducción observada en mAP@0.5 en Train 2, aun cuando el número total de imágenes aumentó.
 
-11.	Análisis técnico de errores del modelo
+**11.	Análisis técnico de errores del modelo**
+
 En esta sección se presenta un análisis técnico detallado de los principales errores observados en el entrenamiento Train 2 (136 imágenes, 50 épocas). El objetivo es identificar patrones de fallo, formular hipótesis plausibles desde el punto de vista de visión por computadora y establecer mejoras concretas basadas en evidencia.
+
 11.1 Falsos positivos
+
 1. Caso: Gorra clasificada como casco
 En múltiples ejemplos, trabajadores con gorra fueron clasificados como persona_con_casco, aun cuando el etiquetado real correspondía a persona_sin_casco.
 
@@ -198,7 +232,9 @@ El modelo está utilizando como característica principal la silueta circular o 
 Cuando la persona aparece a mayor distancia de la cámara, la clasificación tiende a degradarse o cambiar de clase con baja confianza.
 Hipótesis técnica:
 La reducción en tamaño efectivo del objeto en pixeles afecta la capacidad del modelo para distinguir detalles finos del casco. El modelo YOLOv8n, por su tamaño reducido, puede no tener suficiente capacidad para generalizar correctamente en objetos pequeños.
+
 11.2 Falsos negativos
+
 1. Casco parcialmente oculto
 En escenas donde el casco está parcialmente cubierto por postura, herramientas u otros trabajadores, el modelo no logra clasificar correctamente como persona_con_casco.
 Hipótesis técnica:
@@ -209,7 +245,9 @@ Hipótesis técnica:
 Sesgo de color en el dataset. El modelo puede estar asociando “casco” con color específico más que con forma estructural.
 3. Personas parcialmente fuera de cuadro
 En imágenes donde la persona está cortada por el borde del encuadre, el modelo pierde robustez en la clasificación.
+
 11.3 Hipótesis técnicas
+
 El entrenamiento no incluye suficientes ejemplos con personas parcialmente visibles, lo que afecta la generalización en situaciones reales de cámara fija o CCTV.
 El descenso de mAP en Train 2 no necesariamente indica un deterioro del modelo, sino un aumento en la complejidad del dataset. Al incorporar casos límite (gorras, trapos, mayor distancia), la evaluación se vuelve más exigente.
 El problema principal identificado no es geométrico ni de definición de bounding boxes, sino semántico: el modelo está aprendiendo correlaciones visuales superficiales (forma y color) en lugar del concepto estructural de casco rígido industrial.
@@ -220,40 +258,57 @@ Este comportamiento es esperable en datasets pequeños y puede mitigarse mediant
 - Revisión de balance por clase y por nivel de dificultad.
 - Evaluación de modelos de mayor capacidad (por ejemplo, YOLOv8s).
 
-12.	Resultados de Inferencia en imágenes nuevas
+**12.	Resultados de Inferencia en imágenes nuevas**
+
 El siguiente análisis presenta una revisión cualitativa de los resultados obtenidos al ejecutar el modelo de detección de cascos de seguridad sobre un conjunto de imágenes de prueba. El objetivo de esta evaluación es observar el comportamiento del modelo en diferentes escenarios y analizar tanto los aciertos como las posibles limitaciones del sistema de detección.
+
 12.1 Imagen 1
+
 ![Inferencia ejemplo 1](results/inference/img_01.jpg)
     
 En esta imagen se observa a una persona trabajando en el motor de un camión dentro de un taller mecánico. No se aprecia el uso de casco de seguridad. El modelo no detectó ninguna persona en la escena. Una posible explicación es que el trabajador se encuentra parcialmente oculto y de espaldas a la cámara. Además, el modelo probablemente fue entrenado principalmente con imágenes de obras de construcción, por lo que su capacidad de detección puede disminuir en contextos diferentes como talleres mecánicos.
+
 12.2 Imagen 2
+
 ![Inferencia ejemplo 2](results/inference/img_02.jpg)
 
 En esta escena aparece un trabajador caminando dentro de una estructura de andamios. El modelo detectó dos instancias clasificadas como 'persona_con_casco'. Una de las detecciones presenta una confianza alta (0.93) y corresponde correctamente al trabajador visible en la imagen. La segunda detección muestra una confianza menor (0.35) y posiblemente corresponde a un falso positivo generado por la complejidad de las estructuras metálicas del fondo. Este resultado sugiere que el modelo puede confundirse con patrones estructurales presentes en el entorno.
+
 12.3 Imagen 3
+
 ![Inferencia ejemplo 3](results/inference/img_03.jpg)
 
 El modelo identificó una instancia clasificada como 'persona_sin_casco' con una confianza de 0.52. En la imagen se observa un trabajador que lleva un pañuelo en la cabeza y gafas de protección, pero no utiliza casco de seguridad. La predicción puede considerarse correcta, aunque el nivel de confianza moderado indica que el modelo presenta cierta incertidumbre cuando la cabeza está cubierta por elementos distintos al casco.
+
 12.4 Imagen 4
+
 ![Inferencia ejemplo 4](results/inference/img_04.jpg)
 
 Esta imagen presenta una escena conceptual en la que una persona interactúa con un holograma digital. El modelo no generó ninguna detección. Este resultado es adecuado, ya que la escena no corresponde a un entorno de construcción ni contiene trabajadores con cascos de seguridad.
+
 12.5 Imagen 5
+
 ![Inferencia ejemplo 5](results/inference/img_05.jpg)
 
 El modelo detectó una instancia clasificada como 'persona_sin_casco' con una confianza de 0.91. Sin embargo, el trabajador en la imagen sí lleva un casco de seguridad amarillo. Este caso representa un error de clasificación. Una posible causa es que el trabajador se encuentra inclinado hacia adelante, lo que provoca que el casco sea parcialmente ocultado y dificulte su reconocimiento por parte del modelo.
+
 12.6 Conclusiones de inferencia.
+
 En términos generales, el modelo demuestra capacidad para identificar trabajadores con y sin casco en diferentes escenas relacionadas con actividades de construcción. No obstante, el análisis también revela algunas limitaciones. La precisión del modelo disminuye cuando las personas aparecen parcialmente ocultas, cuando el casco se observa desde ángulos poco comunes o cuando existen estructuras complejas en el fondo que pueden generar falsas detecciones. Para mejorar el desempeño del modelo sería recomendable ampliar el conjunto de datos de entrenamiento, incorporar más ejemplos de cascos desde diferentes perspectivas y aumentar la diversidad de contextos laborales representados en el dataset.
 
-14.	Reproducibilidad
+**13.	Reproducibilidad**
+
 13.1 Cómo ejecutar el proyecto
+
 Para reproducir el entrenamiento y evaluación:
 1) Abrir los notebooks dentro de la carpeta /notebooks en GitHub.
 2) Abrir cada notebook en Google Colab (opción ‘Open in Colab’ o cargándolo manualmente).
 3) En Colab: Runtime → Change runtime type → seleccionar GPU.
 4) Ejecutar celdas en orden (de arriba a abajo), verificando que el enlace con Roboflow y la ruta al data.yaml sean correctas.
 5) Al finalizar, revisar las carpetas de resultados generadas (curvas, matriz de confusión, ejemplos de validación).
+
 13.2 Checklist de Reproducibilidad Técnica
+
 Para garantizar que un tercero pueda reproducir los resultados sin ambigüedades, se documentan los parámetros y versiones utilizadas en el entrenamiento principal (E50):
 Dataset
 •	Plataforma: Roboflow
@@ -276,7 +331,9 @@ Entorno
 •	Instalación: pip install ultralytics
 Nota sobre verificación rápida
 El notebook E1 (1 epoch) se incluye como verificación de pipeline para comprobar carga correcta del dataset, rutas y configuración antes de ejecutar el entrenamiento completo.
+
 13.3 Nota de prueba de reproducibilidad
+
 El entrenamiento completo (E50) fue ejecutado exitosamente en Google Colab con GPU habilitada.
 Condiciones de ejecución:
 •	Entorno: Google Colab
@@ -291,7 +348,8 @@ La ejecución end-to-end incluye:
 5.	Exportación de pesos entrenados.
 Esto permite que cualquier tercero pueda reproducir los resultados utilizando únicamente el repositorio y Google Colab, sin instalaciones locales.
 
-14.	Limitaciones del dataset y del modelo
+**14.	Limitaciones del dataset y del modelo**
+
 Limitaciones actuales (importantes para interpretar resultados):
 • Tamaño del dataset: 89–136 imágenes es un tamaño pequeño para un detector robusto en condiciones reales.
 • Distribución y sesgo: las imágenes provienen de un banco de imágenes (Pexels), lo que puede no reflejar cámaras reales de obra (ángulos fijos, CCTV, resolución variable, polvo, vibración, etc.).
@@ -307,7 +365,8 @@ Este modelo es un prototipo académico y NO debe usarse como único mecanismo de
 • Casos donde la privacidad o regulación requiera procesos formales (retención de video, consentimiento, protección de datos) sin cumplir normativa aplicable.
 Antes de cualquier uso operativo, se requiere: dataset propio del entorno real, evaluación con métricas y criterios del proyecto, pruebas piloto, análisis de riesgos, y un plan de calibración/monitoreo del modelo.
 
-15.	Próximos pasos 
+**15.	Próximos pasos **
+
 Para mejorar el desempeño y robustez, sería recomendable:
 • Incrementar el dataset a 150–200 imágenes como mínimo, idealmente más (500+), incluyendo cámaras y escenas reales de obra.
 • Aumentar diversidad: diferentes cascos, colores, distancias, ángulos (frontal/lateral/superior), y condiciones de iluminación/clima.
@@ -317,7 +376,8 @@ Para mejorar el desempeño y robustez, sería recomendable:
 • Evaluar métricas adicionales (mAP@0.5:0.95, por clase, por tamaños) y elegir un umbral operativo según caso de uso (F1 vs recall).
 • Considerar ampliar el alcance: detección de otros EPP (chaleco, lentes) o zonas de riesgo, siempre con dataset adecuado.
 
-16.	Marco de Gobernanza y Uso Responsable del Modelo
+**16.	Marco de Gobernanza y Uso Responsable del Modelo**
+
 Con el objetivo de documentar de forma estructurada las consideraciones éticas, técnicas y regulatorias asociadas al desarrollo de este modelo, se establecen los siguientes criterios de gobernanza:
 1. Privacidad y consentimiento
 El dataset utilizado fue construido a partir de imágenes públicas disponibles en la plataforma Pexels, bajo condiciones de uso libre. No se emplearon imágenes privadas ni capturas de entornos reales de obra sin consentimiento explícito.
@@ -345,7 +405,8 @@ El modelo presenta las siguientes limitaciones:
 •	No debe utilizarse como sistema autónomo de seguridad.
 Cualquier uso fuera del ámbito académico requeriría validación técnica adicional con datos propios del entorno real, pruebas piloto controladas y análisis formal de riesgos.
 
-17.	LICENCIA Y CONDICIONES DE USO
+**17.	LICENCIA Y CONDICIONES DE USO**
+
 Este modelo de detección de uso de casco fue desarrollado exclusivamente con fines académicos como parte del programa MAIC (Máster en Inteligencia Artificial para Arquitectura y Construcción). Se trata de un prototipo experimental utilizado para análisis técnico, aprendizaje y evaluación de métricas en visión por computadora.
 El modelo NO ha sido probado en condiciones reales de obra ni validado en entornos operativos. No cuenta con certificaciones, auditorías técnicas ni procesos formales de validación industrial.
 En consecuencia, este modelo NO debe utilizarse como sistema de seguridad para trabajadores en entornos reales, ni como mecanismo único de supervisión, control o toma de decisiones relacionadas con seguridad laboral.
