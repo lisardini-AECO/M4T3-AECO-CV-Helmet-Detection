@@ -8,6 +8,9 @@ Documentación del proyecto
 **Presentación del proyecto**  
 [Ver presentación](docs/M4T3_Deteccion_Casco_Seguridad_YOLOv8_Presentacion.pdf)
 
+**Instrucciones para ejecutar el proyecto en Google Colab:**  
+[Ver instrucciones](docs/M4T3_Instrucciones_Ejecucion_Colab.pdf)
+
 
 **1.	Introducción y contexto**
 
